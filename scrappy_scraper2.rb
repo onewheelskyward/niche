@@ -50,10 +50,10 @@ end
 noko.css('table.wikitable td').each_with_index do |cell, index|
 	#if cell.children
 	if index % 6 == 5
-		scrape = Scrape.first(:block => link.to_s)
+		xbox_code = cell.children.to_s.strip
+		scrape = Scrape.first(:block => xbox_code)
 		unless scrape
-			Scrape.create(:block => link.to_s)
-			xbox_code = cell.children.to_s.strip
+			Scrape.create(:block => xbox_code)
 			notify (xbox_code)
 		end
 	end
