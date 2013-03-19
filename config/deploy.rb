@@ -19,6 +19,14 @@ role :app, "pucksteak"                          # This may be the same as your `
 # if you want to clean up old releases on each deploy uncomment this:
 after "deploy:restart", "deploy:cleanup"
 
+namespace :niche do
+	task :symlink do
+		run "ln -s /u/apps/niche/shared/previous_results.sqlite /u/apps/niche/current/previous_results.sqlite"
+	end
+end
+
+after "deploy:symlink", "niche:symlink"
+
 # if you're still using the script/reaper helper you will need
 # these http://github.com/rails/irs_process_scripts
 
