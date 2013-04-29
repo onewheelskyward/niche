@@ -24,10 +24,10 @@ DataMapper.auto_upgrade!
 
 def notify(code, expiry_info)
 	puts "Notifying #{code}"
-	Pony.mail(:to => ["bishop.j138@gmail.com"],
-			:from => "somewhere@sometime.com",
-			:subject => "Keyness++",
-			:body => "New xbox 360 code found.\n#{code}\nExpiry info: #{expiry_info}")
+	#Pony.mail(:to => ["bishop.j138@gmail.com"],
+	#		:from => "somewhere@sometime.com",
+	#		:subject => "Keyness++",
+	#		:body => "New xbox 360 code found.\n#{code}\nExpiry info: #{expiry_info}")
 end
 
 agent = Mechanize.new
@@ -48,7 +48,7 @@ noko.css('table.wikitable td').each_with_index do |cell, index|
 		scrape = Scrape.first(:block => xbox_code)
 		unless scrape
 			Scrape.create(:block => xbox_code)
-			notify (xbox_code, expiry_info)
+			notify(xbox_code, expiry_info)
 		end
 	end
 end
